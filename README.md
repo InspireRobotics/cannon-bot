@@ -1,2 +1,2 @@
 # Cannon Bot
-A currently nonfunctional repo for a WPILib configured canon firing robot.
+Code for a pneumatic-powered cannon robot.

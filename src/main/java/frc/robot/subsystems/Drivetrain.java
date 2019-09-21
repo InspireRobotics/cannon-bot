@@ -24,6 +24,8 @@ import static frc.robot.Robot.oi;
  */
 public class Drivetrain extends Subsystem {
 	
+	private double DRIVEPWR = 0.75;
+	
 	private Spark FrontLeft = new Spark(RobotMap.DriveTrain.LEFT_FRONT);
 	private Spark BackLeft = new Spark(RobotMap.DriveTrain.LEFT_BACK);
 	
@@ -38,7 +40,7 @@ public class Drivetrain extends Subsystem {
 	 * @param right Power percentage for the motors on the right side of the robot.
 	 */
 	public void drive(double left, double right) {
-		differentialDrive.tankDrive(Math.abs(left) > 0.3 ? left : 0, Math.abs(right) > 0.3 ? right : 0);
+		differentialDrive.tankDrive(Math.abs(left * DRIVEPWR) > 0.3 ? left : 0, Math.abs(right * DRIVEPWR) > 0.3 ? right : 0);
 	}
 	
 	

@@ -21,5 +21,5 @@ public class OI {
 	public Joystick drive = new Joystick(0);
 	public Joystick aux = new Joystick(1);
 	
-	Button fireButton = new JoystickButton(aux, RobotMap.Controller.A_BUTTON);
+	Button fireButton = new JoystickButton(drive, RobotMap.Controller.A_BUTTON);
 }

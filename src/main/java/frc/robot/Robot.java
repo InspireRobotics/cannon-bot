@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         oi = new OI();
-        oi.fireButton.whenPressed(new FireCannonCommand(pneumatics, 200));
+        oi.fireButton.whenPressed(new FireCannonCommand(pneumatics, 2000));
     }
 	
 	/**
@@ -40,6 +40,7 @@ public class Robot extends TimedRobot {
 	 */
     @Override
     public void disabledInit() {
+    	System.out.println("Disabling robot!");
     	Scheduler.getInstance().removeAll();
     	//In case default stop failed...
         drivetrain.stop();
@@ -51,6 +52,7 @@ public class Robot extends TimedRobot {
 	 */
     @Override
     public void teleopInit() {
+    	System.out.println("Enabling robot!");
         Scheduler.getInstance().add(new DefaultDriveCommand(drivetrain, oi));
     }
 	

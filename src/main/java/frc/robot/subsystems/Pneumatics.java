@@ -7,7 +7,7 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -19,20 +19,21 @@ import frc.robot.RobotMap;
  */
 public class Pneumatics extends Subsystem {
 	
-	private Relay valve = new Relay(RobotMap.Cannon.VALVE);
+	private Jaguar valve = new Jaguar(RobotMap.Cannon.VALVE);
+	
 	
 	/**
 	 * Opens the value, allowing pressurized air to be released into the chamber
 	 */
 	public void open(){
-		valve.set(Relay.Value.kForward);
+		valve.set(1.0);
 	}
 	
 	/**
 	 * Closes the valve, restricting pressurized air from flowing into the chamber
 	 */
 	public void close(){
-		valve.set(Relay.Value.kOff);
+		valve.set(0.0);
 	}
 	
 	/**

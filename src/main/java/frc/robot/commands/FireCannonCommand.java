@@ -41,7 +41,7 @@ public class FireCannonCommand extends Command {
 	protected void initialize() {
 		start = System.currentTimeMillis();
 		pneumatics.open();
-		
+		System.out.println("Firing cannon!");
 	}
 	
 	/**
