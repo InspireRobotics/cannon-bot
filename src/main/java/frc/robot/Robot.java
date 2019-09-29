@@ -14,6 +14,9 @@ import frc.robot.commands.FireCannonCommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Pneumatics;
 
+import java.io.Console;
+import java.util.logging.*;
+
 /**
  * Main robot class; this class contains all subsystems and commands to run given different conditions.
  * @author Dat-Guy
@@ -25,6 +28,7 @@ public class Robot extends TimedRobot {
     public static Drivetrain drivetrain = new Drivetrain();
     public static Pneumatics pneumatics = new Pneumatics();
     public static OI oi;
+    public static Logger logger = Logger.getLogger(Robot.class.getName());
 	
 	/**
 	 * Initializes the input/output interface, and sets up the fire command
@@ -32,7 +36,17 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         oi = new OI();
-        oi.fireButton.whenPressed(new FireCannonCommand(pneumatics, 2000));
+        oi.fireButton.whenPressed(new FireCannonCommand(pneumatics, 500));
+        //Setup the logger
+	    StreamHandler handler = new StreamHandler(System.out, new SimpleFormatter());
+	    handler.setLevel(Level.FINE);
+	    logger.addHandler(handler);
+	    logger.setLevel(Level.FINE);
+    }
+    
+    @Override
+    public void robotPeriodic(){
+    	drivetrain.logCurrentPower();
     }
 	
 	/**
@@ -40,11 +54,16 @@ public class Robot extends TimedRobot {
 	 */
     @Override
     public void disabledInit() {
-    	System.out.println("Disabling robot!");
+    	logger.info("Disabling robot!");
     	Scheduler.getInstance().removeAll();
     	//In case default stop failed...
         drivetrain.stop();
         pneumatics.close();
+    }
+    
+    @Override
+    public void disabledPeriodic(){
+    	//Stops the robot from complaining
     }
 	
 	/**
@@ -52,10 +71,10 @@ public class Robot extends TimedRobot {
 	 */
     @Override
     public void teleopInit() {
-    	System.out.println("Enabling robot!");
+    	logger.info("Enabling robot!");
         Scheduler.getInstance().add(new DefaultDriveCommand(drivetrain, oi));
     }
-	
+    
 	/**
 	 * Runs all queued commands; this also allows the cannon to be fired,
 	 * as the FireCannonCommand is run when added to the queue.

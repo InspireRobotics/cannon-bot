@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.Pneumatics;
 
+import static frc.robot.Robot.logger;
+
 /**
  * Opens the pressure valve to the cannon for a given period of time.
  * @author Dat-Guy
@@ -41,7 +43,7 @@ public class FireCannonCommand extends Command {
 	protected void initialize() {
 		start = System.currentTimeMillis();
 		pneumatics.open();
-		System.out.println("Firing cannon!");
+		logger.info("Firing cannon!");
 	}
 	
 	/**

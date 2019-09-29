@@ -13,7 +13,7 @@ package frc.robot;
  * @version 1.0 09/18/2019
  */
 public class RobotMap {
-	
+	//hi this is robot code 101
 	public static class DriveTrain {
 		public static int LEFT_FRONT = 0;
 		public static int LEFT_BACK = 1;
@@ -23,7 +23,7 @@ public class RobotMap {
 	}
 	
 	public static class Cannon {
-		public static int VALVE = 0;
+		public static int VALVE = 4;
 	}
 	
 	public static class Controller {

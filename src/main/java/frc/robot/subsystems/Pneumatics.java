@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
+import static frc.robot.Robot.logger;
+
 /**
  * Controls valve responsible for firing the cannon.
  * @author Dat-Guy
@@ -26,6 +28,7 @@ public class Pneumatics extends Subsystem {
 	 * Opens the value, allowing pressurized air to be released into the chamber
 	 */
 	public void open(){
+		logger.fine("Opening valve!");
 		valve.set(1.0);
 	}
 	
@@ -33,6 +36,7 @@ public class Pneumatics extends Subsystem {
 	 * Closes the valve, restricting pressurized air from flowing into the chamber
 	 */
 	public void close(){
+		logger.fine("Closing valve!");
 		valve.set(0.0);
 	}
 	
